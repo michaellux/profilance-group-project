@@ -1,0 +1,8 @@
+.header {
+  margin-top: 2rem;
+}
+.menu__item {
+  text-align: center;
+  font-size: 4rem;
+  list-style-type: none;
+}
