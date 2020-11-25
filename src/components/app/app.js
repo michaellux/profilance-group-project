@@ -2,11 +2,12 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Header from '../header';
 import { HomePage, NewsPage } from '../pages';
+import GetParameterPopups from "../popups/GetParameterPopups";
 import './app.css';
 
 const App = () => {
   return (
-    <div class="container">
+    <>
     <Header />
     <Switch>
       <Route 
@@ -18,7 +19,8 @@ const App = () => {
         component={NewsPage}
         exact />
     </Switch>
-    </div>
+      <GetParameterPopups />
+    </>
   )
 };
 
