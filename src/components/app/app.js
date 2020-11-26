@@ -18,12 +18,10 @@ const App = () => {
         <Route
           path="/admin"
           component={AdminPage}
-          isLoggedIn={false}
         />
         <Route
           path="/simpleuser"
           component={SimpleUserPage}
-          isLoggedIn={false}
         />
         <Route
           path="/news"

@@ -4,7 +4,14 @@ import Dialog from "@material-ui/core/Dialog";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
+import { useDispatch, useSelector } from 'react-redux';
+import { userLogIn } from '../../../actions';
+
 const LogIn = ({ isOpened }) => {
+
+  const app = useSelector(state => state.app);
+  const dispatch = useDispatch();
+
   const history = useHistory();
 
   const users = {
@@ -34,14 +41,13 @@ const LogIn = ({ isOpened }) => {
     switch (login) {
       case users.simpleUser.login:
         if (password === users.simpleUser.password) {
-          console.log('SimpleUser redirect');
+          dispatch(userLogIn());
           history.push(`${pathForPush}/simpleuser`);
-          
         }
         break;
       case users.admin.login:
         if (password === users.admin.password) {
-          console.log('Admin redirect');
+          dispatch(userLogIn());
           history.push(`${pathForPush}/admin`);
         }
         break;

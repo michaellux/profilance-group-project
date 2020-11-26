@@ -1,8 +1,13 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux';
+
 import './pages.css';
 
-const AdminPage = ({isLoggedIn}) => {
+const AdminPage = () => {
+  const { isLoggedIn } = useSelector(state => state.app.logInStatus);
+  console.log(isLoggedIn);
+
   if (isLoggedIn) {
     return (
       <main>

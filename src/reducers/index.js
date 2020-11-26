@@ -1,8 +1,32 @@
-const initialState = {
+import { combineReducers } from 'redux';
+
+let appState = {
+  logInStatus: {
+    isLoggedIn: false
+  }
+}
+
+const app = (state = appState, action) => {
+  console.log(action);
+  switch (action.type) {
+    case 'USER_LOG_IN':
+      return {
+        logInStatus: { isLoggedIn: true }
+      };
+    case 'USER_LOG_OUT':
+      return {
+        logInStatus: { isLoggedIn: false }
+      };
+    default:
+      return state;
+  }
+}
+
+const newsState = {
   news: []
 };
 
-const reducer = (state = initialState, action) => {
+const news = (state = newsState, action) => {
   switch (action.type) {
     case 'NEWS_LOADED':
       return {
@@ -13,4 +37,7 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export default combineReducers({
+  app,
+  news,
+});
