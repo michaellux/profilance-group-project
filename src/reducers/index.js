@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 
 let appState = {
   logInStatus: {
@@ -7,7 +8,6 @@ let appState = {
 }
 
 const app = (state = appState, action) => {
-  console.log(action);
   switch (action.type) {
     case 'USER_LOG_IN':
       return {
@@ -40,4 +40,5 @@ const news = (state = newsState, action) => {
 export default combineReducers({
   app,
   news,
+  form: formReducer
 });

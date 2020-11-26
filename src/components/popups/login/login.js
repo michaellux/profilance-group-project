@@ -1,15 +1,44 @@
 import React from "react";
 import { useHistory, withRouter } from "react-router-dom";
-import Dialog from "@material-ui/core/Dialog";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 
-import { useDispatch, useSelector } from 'react-redux';
+import { Field, reduxForm } from 'redux-form'
+
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from '@material-ui/core/styles';
+
+import { useDispatch } from 'react-redux';
 import { userLogIn } from '../../../actions';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: 200,
+    },
+  },
+}));
+
+const renderTextField = ({
+  label,
+  input,
+  meta: { touched, invalid, error },
+  ...custom
+}) => (
+    <TextField
+      label={label}
+      placeholder={label}
+      error={touched && invalid}
+      helperText={touched && error}
+      {...input}
+      {...custom}
+  />);
 
 const LogIn = ({ isOpened }) => {
 
-  const app = useSelector(state => state.app);
+  const classes = useStyles();
+
   const dispatch = useDispatch();
 
   const history = useHistory();
@@ -43,25 +72,30 @@ const LogIn = ({ isOpened }) => {
         if (password === users.simpleUser.password) {
           dispatch(userLogIn());
           history.push(`${pathForPush}/simpleuser`);
+        } else {
+          alert('Неправильный пароль');
         }
         break;
       case users.admin.login:
         if (password === users.admin.password) {
           dispatch(userLogIn());
           history.push(`${pathForPush}/admin`);
+        } else {
+          alert('Неправильный пароль');
         }
         break;
       default:
+        alert('Неправильный логин');
         break;
     }
   };
 
   return (
     <Dialog onClose={history.goBack} open={isOpened}>
-      <form onSubmit={logIn} noValidate autoComplete="off" >
+      <form className={classes.root} onSubmit={logIn} autoComplete="off" >
         <h2>Log In</h2>
-        <TextField name="login" type="text" label="Login" />
-        <TextField name="password" type="password" label="Password" />
+        <Field name="login" component={ renderTextField } label="Login" />
+        <Field name="password" component={renderTextField} label="Password" type="password" />
         <Button
           type="submit"
           variant="contained"
@@ -74,4 +108,11 @@ const LogIn = ({ isOpened }) => {
   );
 };
 
-export default withRouter(LogIn);
+export default withRouter(
+  reduxForm(
+    {
+      form: 'LoginForm'
+    }
+  )
+  (LogIn)
+);
