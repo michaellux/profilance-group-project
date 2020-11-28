@@ -6,17 +6,38 @@ import { Field, reduxForm } from 'redux-form'
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import Button from "@material-ui/core/Button";
+import InputLabel from '@material-ui/core/InputLabel';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { useDispatch } from 'react-redux';
 import { userLogIn } from '../../../actions';
+import { DialogTitle, Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: 200,
+    '&': {
+      padding: '2rem'
     },
+    '& .loginForm__title': {
+      paddingLeft: '0'
+    },
+    '& .MuiTypography-root': {
+      fontSize: '3rem'
+    },
+    '& .MuiTextField-root': {
+      width: '100%',
+    },
+    '& .MuiFormLabel-root': {
+      fontSize: '2rem',
+    },
+    '& .MuiButton-containedSecondary': {
+      width: '100%',
+      fontSize: '1.5rem',
+      textTransform: 'initial'
+    },
+    '& .MuiFormHelperText-root': {
+      fontSize: '1rem'
+    }
   },
 }));
 
@@ -33,7 +54,7 @@ const renderTextField = ({
       helperText={touched && error}
       {...input}
       {...custom}
-  />);
+    />);
 
 const LogIn = ({ isOpened }) => {
 
@@ -91,18 +112,44 @@ const LogIn = ({ isOpened }) => {
   };
 
   return (
-    <Dialog onClose={history.goBack} open={isOpened}>
-      <form className={classes.root} onSubmit={logIn} autoComplete="off" >
-        <h2>Log In</h2>
-        <Field name="login" component={ renderTextField } label="Login" />
-        <Field name="password" component={renderTextField} label="Password" type="password" />
-        <Button
-          type="submit"
-          variant="contained"
-          color="secondary"
-        >
-          Send
-        </Button>
+    <Dialog className="loginDialog" onClose={history.goBack} open={isOpened}>
+      <form className={`${classes.root} loginDialog__form loginForm`} onSubmit={logIn} autoComplete="off" >
+        <DialogTitle className="loginForm__title">Вход в систему</DialogTitle>
+        <Grid className="loginForm__inputFieldsContainer inputFieldsContainer" container spacing={2}>
+          <Grid className="inputFieldsContainer__item" item xs={6}>
+            <InputLabel shrink htmlFor="login">
+              Логин
+          </InputLabel>
+            <Field
+              id="login"
+              className="inputFieldsContainer__login"
+              name="login"
+              component={renderTextField}
+            />
+          </Grid>
+          <Grid className="inputFieldsContainer__item" item xs={6}>
+            <InputLabel shrink htmlFor="password">
+              Пароль
+          </InputLabel>
+            <Field
+              id="password"
+              className="inputFieldsContainer__password"
+              name="password"
+              component={renderTextField}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              className="loginForm__logInButton"
+              type="submit"
+              variant="contained"
+              color="secondary"
+            >
+              Войти
+            </Button>
+          </Grid>
+        </Grid>
+
       </form>
     </Dialog>
   );
@@ -114,5 +161,5 @@ export default withRouter(
       form: 'LoginForm'
     }
   )
-  (LogIn)
+    (LogIn)
 );
