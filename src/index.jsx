@@ -22,5 +22,5 @@ ReactDOM.render(
       </NewsServiceProvider>
     </ErrorBoundry>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
