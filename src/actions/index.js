@@ -1,26 +1,20 @@
-const newsLoaded = (freshNews) => {
-  return {
-    type: 'NEWS_LOADED',
-    payload: freshNews
-  };
-};
+const newsLoaded = (freshNews) => ({
+  type: 'NEWS_LOADED',
+  payload: freshNews,
+});
 
-const userLogIn = () => {
-  return {
-    type: 'USER_LOG_IN',
-    payload: true
-  }
-}
+const userLogIn = () => ({
+  type: 'USER_LOG_IN',
+  payload: true,
+});
 
-const userLogOut = () => {
-  return {
-    type: 'USER_LOG_OUT',
-    payload: false
-  }
-}
+const userLogOut = () => ({
+  type: 'USER_LOG_OUT',
+  payload: false,
+});
 
 export {
   newsLoaded,
   userLogIn,
-  userLogOut
+  userLogOut,
 };

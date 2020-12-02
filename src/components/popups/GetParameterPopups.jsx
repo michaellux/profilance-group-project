@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { GET_ENUMS } from "../../router";
+import { GET_ENUMS } from '../../router';
 
-import useGetPopupState from "./hooks/useGetPopupState";
-import LogIn from "./login";
+import useGetPopupState from './hooks/useGetPopupState';
+import LogIn from './login';
 
 const popups = {
-  [GET_ENUMS.popup.logIn]: LogIn
+  [GET_ENUMS.popup.logIn]: LogIn,
 };
 
 const GetParameterPopups = () => {

@@ -8,5 +8,5 @@ export {
   HomePage,
   NewsPage,
   AdminPage,
-  SimpleUserPage
+  SimpleUserPage,
 };

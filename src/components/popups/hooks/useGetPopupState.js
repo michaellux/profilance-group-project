@@ -1,8 +1,8 @@
-import { useState, useEffect, useMemo } from "react";
-import useGetParameter from "../../hooks/router/useGetParameter";
+import { useState, useEffect, useMemo } from 'react';
+import useGetParameter from '../../hooks/router/useGetParameter';
 
 const GET_PARAMS = {
-  popup: "popup"
+  popup: 'popup',
 };
 
 let timeout;
@@ -22,16 +22,14 @@ export default () => {
     }
   }, [popupName]);
 
-  useEffect(() => {
-    return () => {
-      timeout && clearTimeout(timeout);
-    };
+  useEffect(() => () => {
+    timeout && clearTimeout(timeout);
   }, []);
 
   const isOpened = useMemo(() => Boolean(popupName), [popupName]);
 
   return {
     mountedPopup,
-    isOpened
+    isOpened,
   };
 };
