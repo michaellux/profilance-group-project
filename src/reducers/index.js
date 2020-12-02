@@ -1,36 +1,35 @@
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 
-let appState = {
+const appState = {
   logInStatus: {
-    isLoggedIn: false
-  }
-}
+    isLoggedIn: false,
+  },
+};
 
 const app = (state = appState, action) => {
   switch (action.type) {
     case 'USER_LOG_IN':
       return {
-        logInStatus: { isLoggedIn: true }
+        logInStatus: { isLoggedIn: true },
       };
     case 'USER_LOG_OUT':
       return {
-        logInStatus: { isLoggedIn: false }
+        logInStatus: { isLoggedIn: false },
       };
     default:
       return state;
   }
-}
+};
 
 const newsState = {
-  news: []
+  news: [],
 };
 
 const news = (state = newsState, action) => {
   switch (action.type) {
     case 'NEWS_LOADED':
       return {
-        news: action.payload
+        news: action.payload,
       };
     default:
       return state;
@@ -40,5 +39,4 @@ const news = (state = newsState, action) => {
 export default combineReducers({
   app,
   news,
-  form: formReducer
 });

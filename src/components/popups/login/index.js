@@ -1,3 +1,3 @@
-import LogIn from './login';
+import LogInDialog from './login';
 
-export default LogIn;
+export default LogInDialog;
