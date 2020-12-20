@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, NavLink } from 'react-router-dom';
 import { Link } from '@material-ui/core';
-
 import { useSelector, useDispatch } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 import usePrepareLink from '../hooks/router/usePrepareLink';
 import { GET_PARAMS, GET_ENUMS } from '../../router';
 
@@ -10,7 +10,15 @@ import { userLogOut } from '../../actions';
 
 import './header.css';
 
+const useStyles = makeStyles(() => ({
+  menu__itemlink_active: {
+    color: 'red',
+  },
+}));
+
 const Header = () => {
+  const classes = useStyles();
+
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.app.logInStatus);
 
@@ -24,13 +32,14 @@ const Header = () => {
   if (!isLoggedIn) {
     logInOutLink = (
       <li className="menu__item menu__loginpage col col--4">
-        <Link className="menu__itemlink itemlink" component={RouterLink} to={logInLink}>Вход</Link>
+        <Link activeClassName={classes.menu__itemlink_active} className="menu__itemlink itemlink" component={RouterLink} to={logInLink}>Вход</Link>
       </li>
     );
   } else {
     logInOutLink = (
       <li className="menu__item menu__loginpage col col--4">
         <Link
+          activeClassName={classes.menu__itemlink_active}
           className="menu__itemlink itemlink"
           href="/"
           onClick={() => {
@@ -48,10 +57,10 @@ const Header = () => {
       <nav className="header__nav navigation">
         <ul className="navigation__menu row">
           <li className="menu__item menu__mainpage col col--4">
-            <Link className="menu__itemlink itemlink" component={RouterLink} to="/">Главная</Link>
+            <Link activeClassName={classes.menu__itemlink_active} className="menu__itemlink itemlink" component={NavLink} to="/" exact>Главная</Link>
           </li>
           <li className="menu__item menu__newspage col col--4">
-            <Link className="menu__itemlink itemlink" component={RouterLink} to="/news">Новости</Link>
+            <Link activeClassName={classes.menu__itemlink_active} className="menu__itemlink itemlink" component={NavLink} to="/news">Новости</Link>
           </li>
           {logInOutLink}
         </ul>
