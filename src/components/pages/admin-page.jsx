@@ -5,8 +5,7 @@ import { useSelector } from 'react-redux';
 import './pages.css';
 
 const AdminPage = () => {
-  const { isLoggedIn } = useSelector(state => state.app.logInStatus);
-  console.log(isLoggedIn);
+  const { isLoggedIn } = useSelector((state) => state.app.logInStatus);
 
   if (isLoggedIn) {
     return (
@@ -22,7 +21,7 @@ const AdminPage = () => {
       <h1 className="title main__home-title">Admin Page</h1>
       <p>Кто ты? Сюда можно только админу!</p>
     </main>
-  )
-}
+  );
+};
 
 export default AdminPage;

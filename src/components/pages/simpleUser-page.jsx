@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux';
 import './pages.css';
 
 const SimpleUserPage = () => {
-  const { isLoggedIn } = useSelector(state => state.app.logInStatus);
-  console.log(isLoggedIn);
+  const { isLoggedIn } = useSelector((state) => state.app.logInStatus);
 
   if (isLoggedIn) {
     return (
@@ -20,8 +19,7 @@ const SimpleUserPage = () => {
       <h1 className="title main__home-title">SimpleUser Page</h1>
       <p>Кто ты? Сюда заходят только обычные пользователи!</p>
     </main>
-  )
-  
-}
+  );
+};
 
 export default SimpleUserPage;

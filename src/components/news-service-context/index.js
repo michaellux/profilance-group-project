@@ -1,9 +1,9 @@
 import {
- NewsServiceProvider,
- NewsServiceConsumer 
+  NewsServiceProvider,
+  NewsServiceConsumer,
 } from './news-service-context';
 
 export {
   NewsServiceProvider,
-  NewsServiceConsumer
+  NewsServiceConsumer,
 };

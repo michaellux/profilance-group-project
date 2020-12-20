@@ -13,6 +13,7 @@ export default () => {
 
   useEffect(() => {
     if (popupName) {
+    /* eslint no-unused-expressions: ["error", { "allowShortCircuit": true }] */
       timeout && clearTimeout(timeout);
       setMountedPopup(popupName);
     } else {

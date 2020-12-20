@@ -2,10 +2,10 @@ import React from 'react';
 
 const {
   Provider: NewsServiceProvider,
-  Consumer: NewsServiceConsumer
+  Consumer: NewsServiceConsumer,
 } = React.createContext();
 
 export {
   NewsServiceProvider,
-  NewsServiceConsumer
+  NewsServiceConsumer,
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useHistory, withRouter } from 'react-router-dom';
 
 import { Form } from 'react-final-form';
@@ -158,6 +159,10 @@ const LoginDialog = ({ isOpened }) => {
 
     </Dialog>
   );
+};
+
+LoginDialog.propTypes = {
+  isOpened: PropTypes.bool.isRequired,
 };
 
 export default withRouter(
