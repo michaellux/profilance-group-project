@@ -109,7 +109,7 @@ const LoginDialog = ({ isOpened }) => {
       <Form
         onSubmit={logIn}
         validate={validate}
-        render={({ handleSubmit, values, submitting }) => (
+        render={({ handleSubmit, submitting }) => (
           <form
             className={`${classes.root} 
         loginDialog__form loginForm`}
@@ -150,7 +150,6 @@ const LoginDialog = ({ isOpened }) => {
                 >
                   Войти
                 </Button>
-                <pre>{JSON.stringify(values, undefined, 2)}</pre>
               </Grid>
             </Grid>
           </form>
