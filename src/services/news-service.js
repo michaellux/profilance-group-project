@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+import ourNews from '../data/our-news.json';
+
 export default class NewsService {
   constructor() {
     this.req = null;
@@ -12,11 +15,16 @@ export default class NewsService {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  async getNews() {
-    const result = await this
-      .getResource('/top-headlines?country=ru&apiKey=c964acebddc6420d941a6df3bc26a73f')
-      .then((json) => json.articles);
+  async getNews(type) {
+    let result = null;
 
+    if (type === 'world') {
+      result = await this
+        .getResource('/top-headlines?country=ru&apiKey=c964acebddc6420d941a6df3bc26a73f')
+        .then((json) => json.articles);
+    } else if (type === 'our') {
+      result = ourNews.articles;
+    }
     return result;
   }
 }
