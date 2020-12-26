@@ -22,14 +22,21 @@ const app = (state = appState, action) => {
 };
 
 const newsState = {
-  news: [],
+  news: {
+    our: [],
+    world: [],
+  },
 };
 
 const news = (state = newsState, action) => {
   switch (action.type) {
-    case 'NEWS_LOADED':
+    case 'OUR_NEWS_LOADED':
       return {
-        news: action.payload,
+        news: { world: state.news.world, our: action.payload },
+      };
+    case 'WORLD_NEWS_LOADED':
+      return {
+        news: { our: state.news.our, world: action.payload },
       };
     default:
       return state;

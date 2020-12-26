@@ -1,5 +1,10 @@
-const newsLoaded = (freshNews) => ({
-  type: 'NEWS_LOADED',
+const ourNewsLoaded = (freshNews) => ({
+  type: 'OUR_NEWS_LOADED',
+  payload: freshNews,
+});
+
+const worldNewsLoaded = (freshNews) => ({
+  type: 'WORLD_NEWS_LOADED',
   payload: freshNews,
 });
 
@@ -14,7 +19,8 @@ const userLogOut = () => ({
 });
 
 export {
-  newsLoaded,
+  ourNewsLoaded,
+  worldNewsLoaded,
   userLogIn,
   userLogOut,
 };
