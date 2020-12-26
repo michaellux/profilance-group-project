@@ -2,4 +2,13 @@
   font-size: 3rem;
   text-align: left;
   margin: 2rem 0;
+  color: black;
+}
+.main__our-news-block {
+  background-color: #f6db4f;
+  padding: 2rem;
+}
+.main__our-news-title {
+  font-size: 2rem;
+  margin-top: 0;
 }
