@@ -8,29 +8,40 @@ import Grid from '@material-ui/core/Grid';
 import NewsListItem from '../news-list-item';
 
 import { withNewsService } from '../hoc';
-import { newsLoaded } from '../../actions';
-import { compose } from '../../utils';
-
+import { ourNewsLoaded, worldNewsLoaded } from '../../actions';
+import { compose } from '../../utils/compose';
+import { thenable } from '../../utils/thenable';
 import './news-list.css';
 
 class NewsList extends Component {
   componentDidMount() {
     // eslint-disable-next-line no-shadow
-    const { newsService, newsLoaded } = this.props;
-    newsService.getNews()
-      .then((data) => {
-        newsLoaded(data);
+    const {
+      // eslint-disable-next-line no-shadow
+      newsService, ourNewsLoaded, worldNewsLoaded, type,
+    } = this.props;
+
+    const source = newsService.getNews(type);
+
+    if (type === 'world') {
+      source.then((data) => {
+        worldNewsLoaded(data);
       });
+    } else if (type === 'our') {
+      source.then((data) => {
+        ourNewsLoaded(data);
+      });
+    }
   }
 
   render() {
-    const { news } = this.props;
+    const { news, type } = this.props;
     return (
       <Grid container spacing={3}>
         {
-          Array.isArray(news) ? news.map((newsItem) => (
+          Array.isArray(news[type]) ? news[type].map((newsItem) => (
             <Grid item xs={6} sm={3} key={newsItem.id}>
-              <NewsListItem newsItem={newsItem} />
+              <NewsListItem newsItem={newsItem} type={type} />
             </Grid>
           )) : ('Новостей нет')
         }
@@ -41,7 +52,7 @@ class NewsList extends Component {
 
 const mapStateToProps = ({ news }) => (news);
 
-const mapDispatchToProps = { newsLoaded };
+const mapDispatchToProps = { ourNewsLoaded, worldNewsLoaded };
 
 export default compose(
   withNewsService(),

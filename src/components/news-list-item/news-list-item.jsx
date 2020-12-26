@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 // eslint-disable-next-line react/prop-types
-const NewsListItem = ({ newsItem }) => {
+const NewsListItem = ({ newsItem, type }) => {
   // eslint-disable-next-line react/prop-types
   const { title, description, urlToImage } = newsItem;
   const classes = useStyles();
@@ -26,7 +26,7 @@ const NewsListItem = ({ newsItem }) => {
           component="img"
           alt={title}
           height="140"
-          image={urlToImage}
+          image={(type === 'our') ? `img/${urlToImage}` : urlToImage}
           title={title}
           className={classes.media}
         />
