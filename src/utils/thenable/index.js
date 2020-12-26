@@ -1,6 +1,6 @@
-import compose from './compose';
+import thenable from './thenable';
 
 export {
   // eslint-disable-next-line import/prefer-default-export
-  compose,
+  thenable,
 };
