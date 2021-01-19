@@ -4,7 +4,7 @@ import ourNews from '../data/our-news.json';
 export default class NewsService {
   constructor() {
     this.req = null;
-    this.apiBase = 'http://newsapi.org/v2';
+    this.apiBase = 'https://newsapi.org/v2';
   }
 
   async getResource(url) {
